@@ -10,19 +10,34 @@ public class Book {
 
     public Book() {
         Scanner sc = new Scanner(System.in);
+        
+        try {
+        	System.out.println("Enter the Serial Number of the Book:");
+            this.bSno = sc.nextInt();
+            sc.nextLine();
+            
 
-        System.out.println("Enter the Serial Number of the Book:");
-        this.bSno = sc.nextInt();
-        sc.nextLine();
+            System.out.println("Enter the Name of the Book:");
+            this.bName = sc.nextLine();
+            if(!bName.matches("[a-zA-Z]+")) {
+            	throw new IllegalArgumentException("Please Enter correct Input ");
+            }
 
-        System.out.println("Enter the Name of the Book:");
-        this.bName = sc.nextLine();
+            System.out.println("Enter the Author name:");
+            this.authorName = sc.nextLine();
+            if(!authorName.matches("[a-zA-Z]+")) {
+            	throw new IllegalArgumentException("Please Enter correct Input");
+            }
 
-        System.out.println("Enter the Author name:");
-        this.authorName = sc.nextLine();
-
-        System.out.println("Enter the Number of copies of the Book:");
-        this.bookCopies = sc.nextInt();
+            System.out.println("Enter the Number of copies of the Book :");
+            this.bookCopies = sc.nextInt();
+        }catch(NumberFormatException e) {
+        	System.out.println("Invalid Input");
+        }
+        catch(IllegalArgumentException e) {
+        	System.out.println(e.getMessage());
+        }
+    
     }
 
 	public String getbName() {
